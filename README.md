@@ -18,6 +18,10 @@ To run the mock server (see super simple index.js):
 npm run demo
 ```
 
+Your mock server will be available at http://localhost:3000/
+
+Read the API docs & use POSTMAN or similar to try some API requests on localhost.
+
 ### Generate API Docs with raml2html
 To generate html docs & serve in browser (see `doc.js` for sample code):
 
