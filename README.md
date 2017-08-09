@@ -1,17 +1,28 @@
 Demo:
 
-Uses osprey-mock-service to generate mock-server from raml.
+- Uses [osprey-mock-service](https://github.com/mulesoft-labs/osprey-mock-service) to generate mock-server from raml.
+- Uses [raml2html](https://github.com/raml2html/raml2html) to generate html & markdown docs from raml.
 
-Instructions:
+- Demo uses Raml example [tutorial-jukebox-api](https://github.com/raml-org/raml-examples/tree/master/others/tutorial-jukebox-api)
+
+### Setup Instructions
 
 ```
 npm install
 ```
 
-To run the server:
+### Generate Mock API with Osprey Mock Service
+To run the mock server (see super simple index.js):
 
 ```
 npm run demo
+```
+
+### Generate API Docs with raml2html
+To generate html docs & serve in browser (see `doc.js` for sample code):
+
+```
+npm run docs
 ```
 
 To generate markdown docs:

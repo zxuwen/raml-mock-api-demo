@@ -5,43 +5,38 @@
 /*
  Example of using raml2html as a script.
  Run this as `node doc.js`
- DOES NOT WORK YET
  */
 
 const raml2html = require('raml2html');
 const htmlTheme = raml2html.getConfigForTheme();
 const mdTheme = raml2html.getConfigForTheme('raml2html-markdown-theme');
-const ramlFile = path.join(__dirname, 'helloworld.raml');
+const ramlFile = './tutorial-jukebox-api/jukebox-api.raml';
+const docHtmlFile = './api-doc.html';
 
+var fs = require('fs');
 /**
  * Using the default templates.
  *
  * raml2html.render() needs a config object with at least a `processRamlObj` property.
  * Instead of creating this config object ourselves, we can just ask for raml2html.getDefaultConfig():
  */
-const config1 = raml2html.getConfigForTheme('raml2html-default-theme');
 
-raml2html.render(ramlFile, config1).then(
+raml2html.render(ramlFile, htmlTheme).then(
   result => {
-    console.log('1: ', result.length);
-  },
-  error => {
-    console.log('error! ', error);
-  }
-);
+    console.log('Generating html documentation...');
 
-/**
- * If you want to only customize the Nunjucks configuration, just add a setupNunjucks function to the default config.
- */
-const config6 = raml2html.getConfigForTheme('raml2html-default-theme');
-config6.setupNunjucks = function(env) {
-  // Do stuff with env here
-  env.bla = 'bla';
-};
+    fs.writeFile(docHtmlFile, result, function(err) {
+        if(err) {
+          return console.log(err);
+        }
+        // Opening documention
+        console.log("Html doc generated!");
 
-raml2html.render(ramlFile, config6).then(
-  result => {
-    console.log('6: ', result.length);
+        // Open the document
+        console.log("Opening in browser...");
+        const opn = require('opn');
+        opn(docHtmlFile);
+    });
   },
   error => {
     console.log('error! ', error);
